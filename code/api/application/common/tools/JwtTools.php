@@ -101,7 +101,7 @@ class JwtTools
      * @param int $expires
      * @return string
      * @throws SystemErrorException
-     * 
+     *
      */
     public function IssueToken($uid, $expires = 0)
     {
@@ -198,8 +198,9 @@ class JwtTools
         $token = Request::header(self::$header);
         if (empty($token)) {
             $param = Request::param() ?: [];
-            foreach ($param as $key => $token) {
+            foreach ($param as $key => $value) {
                 if (strcasecmp($key, self::$header) === 0) {
+                    $token = $value;
                     break;
                 }
             }
@@ -212,7 +213,7 @@ class JwtTools
 
     /**
      * @throws SystemErrorException
-     * 
+     *
      */
     protected function getKey()
     {
